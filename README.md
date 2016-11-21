@@ -1,4 +1,4 @@
-# titanium-jpeg-view-ios
+# titanium-mjpeg-view-ios
 A Titanium iOS module for showing an MJPEG stream in a view. Not using WebViews or WebKit.
 
 
@@ -19,7 +19,6 @@ Ideas / ToDo:
 
 - Try filtering the frame with a `CIKernel`
 - … 
-
 
 
 -----------
