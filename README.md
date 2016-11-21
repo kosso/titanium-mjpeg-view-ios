@@ -17,6 +17,7 @@ This works perfectly connecting to a Raspberry Pi running **mjpeg-streamer**. Se
 
 Ideas / ToDo: 
 
+- Add user/pass authentication.
 - Try filtering the frame with a `CIKernel`
 - … 
 
