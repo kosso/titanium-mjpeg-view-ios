@@ -11,7 +11,9 @@ console.log('module loaded:', mjpegmodule);
 // see  : https://github.com/jacksonliam/mjpg-streamer
 
 // Simpler method
-var mjpeg_url = 'http://192.168.0.31:8080/?action=stream';
+var mjpeg_url = 'http://extcam-8.se.axis.com/mjpg/video.mjpg?timestamp=1479768373043'; // A demo stream from Axis
+
+// var mjpeg_url = 'http://192.168.0.31:8080/?action=stream';  // My Raspberry Pi
 
 // or use parts.. 
 // var protocol = 'http';
@@ -47,12 +49,37 @@ var mjpegView = mjpegmodule.createView({
   top:40,
   left:0,
   right:0,
-  color:'#aa003388',
+  color:'#667888b0',
   backgroundImage:'loading_bg_sq.png',
   height:Math.round(Ti.Platform.displayCaps.platformWidth * 0.75) // 4:3 aspect ratio
 });
 
 sv.add(mjpegView);
+
+var textField = Ti.UI.createTextField({
+  borderStyle: Ti.UI.INPUT_BORDERSTYLE_LINE,
+  color: '#222',
+  backgroundColor:'#eee',
+  top: 10, 
+  textAlign:'center',
+  font:{fontSize:14},
+  left:10,
+  right:10,
+  height: 40
+});
+
+textField.value = mjpeg_url;
+
+textField.addEventListener('change', function(e){
+  console.log('change: ', e);
+  if(e.value!=''){
+    mjpeg_url = e.value;
+  }
+
+});
+
+sv.add(textField);
+
 
 var btn_cam_remote_preview = Ti.UI.createButton({
   title:'   START MJPEG STREAM   ',
@@ -61,7 +88,8 @@ var btn_cam_remote_preview = Ti.UI.createButton({
   height:40,
   tintColor:'white',
   top:10,
-  width:Ti.UI.SIZE
+  left:10,
+  right:10
 });
 sv.add(btn_cam_remote_preview);
 
@@ -84,8 +112,6 @@ btn_cam_remote_preview.addEventListener('click', function(){
   connected = !connected;
 });
 
-
 win.add(sv);
-
 
 win.open();

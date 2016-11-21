@@ -164,10 +164,12 @@ static NSData *_endMarkerData = nil;
 
 - (void)play  {
     if (_connection) {
-        // continue
+        NSLog(@"[INFO] interrupting stream.. ");
+        [self stop:nil];
+        
     }
-    else if (_url) {
-        // NSLog(@"[INFO] play: %@", _url);
+    if (_url) {
+        NSLog(@"[INFO] play: %@", _url);
         _connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:_url] delegate:self];
     }
 }
