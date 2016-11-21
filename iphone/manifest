@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0
+apiversion: 2
+architectures: armv7 arm64 i386 x86_64
+description: mjpeg
+author: Kosso
+license: MIT
+copyright: 2016
+
+# these should not be edited
+name: mjpeg
+moduleid: com.kosso.mjpeg
+guid: 7acdf62f-14b0-44aa-b77e-cb5cb441664f
+platform: iphone
+minsdk: 5.5.1.GA
