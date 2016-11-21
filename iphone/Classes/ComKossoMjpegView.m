@@ -130,18 +130,25 @@ static NSData *_endMarkerData = nil;
 
 -(void)requestMJPEG:(id)args
 {
-    
-    
-    NSString *protocol = [TiUtils stringValue:[args objectAtIndex:0]];
-    NSString *host = [TiUtils stringValue:[args objectAtIndex:1]];
-    NSInteger *port = [TiUtils intValue:[args objectAtIndex:2]];
-    NSString *method = [TiUtils stringValue:[args objectAtIndex:3]];
-    NSString *path = [TiUtils stringValue:[args objectAtIndex:4]];
-    
-    NSLog(@"[INFO] requestMJPEG: %@ : %@://%@:%d%@", method, protocol, host, port, path);
-    
-    NSString *string = [NSString stringWithFormat:@"%@://%@:%ld%@", protocol, host, (long)port, path];
-    _url = [NSURL URLWithString:string];
+    // Just provide a url
+    if([args count] == 1){
+        NSString *mjpegurl = [TiUtils stringValue:[args objectAtIndex:0]];
+        NSLog(@"[INFO] requestMJPEG: %@", mjpegurl);
+        _url = [NSURL URLWithString:mjpegurl];
+        
+    } else if([args count] == 5){
+        // Or the url parts..
+        NSString *protocol = [TiUtils stringValue:[args objectAtIndex:0]];
+        NSString *host = [TiUtils stringValue:[args objectAtIndex:1]];
+        NSInteger *port = [TiUtils intValue:[args objectAtIndex:2]];
+        NSString *method = [TiUtils stringValue:[args objectAtIndex:3]];
+        NSString *path = [TiUtils stringValue:[args objectAtIndex:4]];
+        
+        NSLog(@"[INFO] requestMJPEG: %@ : %@://%@:%d%@", method, protocol, host, port, path);
+        NSString *urlstring = [NSString stringWithFormat:@"%@://%@:%ld%@", protocol, host, (long)port, path];
+        _url = [NSURL URLWithString:urlstring];
+        
+    }
     
     _receivedData = [[NSMutableData alloc] init];
     
